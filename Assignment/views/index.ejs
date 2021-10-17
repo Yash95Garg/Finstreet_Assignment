@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Assigment</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="App">
+        <div class="Dark">
+            <div style="padding: 20px 30px 0px;">
+                <div class="align-items-center justify-content-sm-center row">
+                    <div class="text-center-sm col-12 col-sm-7 col-md-5 col-lg-4">
+                        <a href="/">
+                            <div class="padding-none text-center-xs col-12 col-sm-12 col-md-11 col-lg-11">
+                                <img src="/static/media/hodlinfo.png" class="fiat-logo" style="padding: 10px;"> 
+                            </div>
+                        </a>
+                        <p class="col-12 text-center-xs" style="font-family: Oswald, sans-serif; margin-top: -18px; opacity: 0.8; font-size: 18px; color: gray;">Powered By <a class="footer-text-link" rel="nofollow" target="_blank" href="https://www.finstreet.in/" style="color: rgb(61, 198, 193);"> Finstreet</a> </p>
+                        <div class="text-center padding-none col-12 col-sm-12 col-md-2 col-lg-4">
+                            <div class="btn-group">
+                                <button type="button" aria-haspopup="true" aria-expanded="false" class="header-button dropdown-toggle btn btn-secondary">INR</button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <a value="INR" tabindex="0" role="menuitem" class="dropdown-item" href="/BTC-INR">INR</a>
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" aria-haspopup="true" aria-expanded="false" class="header-button dropdown-toggle btn btn-secondary">BTC</button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <a value="BTC" tabindex="0" role="menuitem" class="dropdown-item" href="/BTC-INR">BTC</a>
+                                    <a value="ETH" tabindex="0" role="menuitem" class="dropdown-item" href="/ETH-INR">ETH</a>
+                                    <a value="USDT" tabindex="0" role="menuitem" class="dropdown-item" href="/USDT-INR">USDT</a>
+                                    <a value="XRP" tabindex="0" role="menuitem" class="dropdown-item" href="/XRP-INR">XRP</a>
+                                    <a value="TRX" tabindex="0" role="menuitem" class="dropdown-item" href="/TRX-INR">TRX</a>
+                                    <a value="DASH" tabindex="0" role="menuitem" class="dropdown-item" href="/DASH-INR">DASH</a>
+                                    <a value="ZEC" tabindex="0" role="menuitem" class="dropdown-item" href="/ZEC-INR">ZEC</a>
+                                    <a value="XEM" tabindex="0" role="menuitem" class="dropdown-item" href="/XEM-INR">XEM</a>
+                                    <a value="IOST" tabindex="0" role="menuitem" class="dropdown-item" href="/IOST-INR">IOST</a>
+                                    <a value="WIN" tabindex="0" role="menuitem" class="dropdown-item" href="/WIN-INR">WIN</a>
+                                    <a value="BTT" tabindex="0" role="menuitem" class="dropdown-item" href="/BTT-INR">BTT</a>
+                                    <a value="WRX" tabindex="0" role="menuitem" class="dropdown-item" href="/WRX-INR">WRX</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fiat-crypto-table table-responsive" style="margin: 0px auto;">
+                            <table class="table table-borderless text-center">
+                                <thead>
+                                    <tr>
+                                        <th><h4><span class="pointer">#</span></h4></th>
+                                        <th><h4><span class="pointer">Name</span></h4></th>
+                                        <th><h4><span class="pointer">Last</span></h4></th>
+                                        <th><h4><span class="pointer">Buy / Sell Price</span></h4></th>
+                                        <th><h4><span class="pointer">Volume</span></h4></th>
+                                        <th><h4><span class="pointer">Base_Unit</span></h4></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let i=1; %>
+                                    <% data.forEach(function(response){ %>
+                                    <tr>
+                                        <td class="align-middle">
+                                            <h4 class="table-text"><%= i %></h4>
+                                            <% i = i+1; %>
+                                        </td>
+                                        <td class="align-middle">
+                                            <h4 class="table-text">
+                                                <span class="exchange-name "><%= response.name %></span>
+                                            </h4>
+                                        </td>
+                                        <td class="align-middle"><h4 class="table-text">₹ <%= response.last %></h4></td>
+                                        <td class="align-middle"><h4 class="table-text"><span>₹ <%= response.buy %> / ₹ <%= response.sell %></span></h4></td>
+                                        <td class="align-middle"><h4 class="table-text color-green"><%= response.volume %></h4></td>
+                                        <td class="align-middle"><h4 class="table-text color-green"><%= response.base_unit %></h4></td>
+                                    </tr>
+                                    <% }); %>    
+                                </tbody>
+                            </table>        
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+      setTimeout(function () {
+        location.reload(true);
+      }, 60000);
+    });
+</script>
+
+
+</html>
+
