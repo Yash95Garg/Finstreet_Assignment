@@ -6,13 +6,12 @@ const pool = require("./db");
 const apiCallFromRequest = require("./request");
 
 app.set('view engine','ejs');
-
-app.use(express.static(__dirname + "/static"));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/",async function(req,res){
-    apiCallFromRequest.callApi(function(response){
-        const empty = pool.query(
+    apiCallFromRequest.callApi(async function(response){
+        const empty = await pool.query(
             "TRUNCATE TABLE wazirx"
         );
         //console.log(response);
@@ -29,7 +28,7 @@ app.get("/",async function(req,res){
             const sell = response[property]['sell'];
             const volume = response[property]['volume'];
             const base_unit = response[property]['base_unit'];
-            const createquery = pool.query(
+            const createquery = await pool.query(
                 "INSERT INTO wazirx (name, last, buy, sell, volume, base_unit) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
                 [name, last, buy, sell, volume, base_unit]
             )
@@ -39,7 +38,7 @@ app.get("/",async function(req,res){
             i = i+1;
         }
     })
-    pool.query('SELECT * FROM wazirx', (error, results) => {
+    const getquery = await pool.query('SELECT * FROM wazirx', (error, results) => {
         if (error) {
           throw error;
         }
